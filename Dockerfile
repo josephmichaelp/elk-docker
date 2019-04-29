@@ -42,6 +42,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/jre
 
 ENV ELK_VERSION 7.0.0
 
+sysctl -w vm.max_map_count=262144
 
 ### install Elasticsearch
 
