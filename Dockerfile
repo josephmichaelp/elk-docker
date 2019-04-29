@@ -42,7 +42,6 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/jre
 
 ENV ELK_VERSION 7.0.0
 
-sysctl -w vm.max_map_count=262144
 
 ### install Elasticsearch
 
@@ -61,7 +60,8 @@ RUN mkdir ${ES_HOME} \
  && groupadd -r elasticsearch -g ${ES_GID} \
  && useradd -r -s /usr/sbin/nologin -M -c "Elasticsearch service user" -u ${ES_UID} -g elasticsearch elasticsearch \
  && mkdir -p /var/log/elasticsearch ${ES_PATH_CONF} ${ES_PATH_CONF}/scripts /var/lib/elasticsearch ${ES_PATH_BACKUP} \
- && chown -R elasticsearch:elasticsearch ${ES_HOME} /var/log/elasticsearch /var/lib/elasticsearch ${ES_PATH_CONF} ${ES_PATH_BACKUP}
+ && chown -R elasticsearch:elasticsearch ${ES_HOME} /var/log/elasticsearch /var/lib/elasticsearch ${ES_PATH_CONF} ${ES_PATH_BACKUP} \
+ && sysctl -w vm.max_map_count=262144
 
 
 ### install Logstash
