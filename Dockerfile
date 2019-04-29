@@ -36,7 +36,8 @@ RUN set -x \
  && apt-get update -qq \
  && apt-get install -qqy openjdk-8-jdk tzdata \
  && apt-get clean \
- && set +x
+ && set +x \
+ && sysctl -w vm.max_map_count=262144
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/jre
 
@@ -60,8 +61,7 @@ RUN mkdir ${ES_HOME} \
  && groupadd -r elasticsearch -g ${ES_GID} \
  && useradd -r -s /usr/sbin/nologin -M -c "Elasticsearch service user" -u ${ES_UID} -g elasticsearch elasticsearch \
  && mkdir -p /var/log/elasticsearch ${ES_PATH_CONF} ${ES_PATH_CONF}/scripts /var/lib/elasticsearch ${ES_PATH_BACKUP} \
- && chown -R elasticsearch:elasticsearch ${ES_HOME} /var/log/elasticsearch /var/lib/elasticsearch ${ES_PATH_CONF} ${ES_PATH_BACKUP} \
- && sysctl -w vm.max_map_count=262144
+ && chown -R elasticsearch:elasticsearch ${ES_HOME} /var/log/elasticsearch /var/lib/elasticsearch ${ES_PATH_CONF} ${ES_PATH_BACKUP}
 
 
 ### install Logstash
