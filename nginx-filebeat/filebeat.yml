@@ -2,7 +2,7 @@ output:
   logstash:
     enabled: true
     hosts:
-      - smart-profiling-web-myproject.10.36.27.204.nip.io:5044
+      - elk:5044
     timeout: 15
     ssl:
       certificate_authorities:
