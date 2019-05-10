@@ -2,11 +2,11 @@ output:
   logstash:
     enabled: true
     hosts:
-      - elk:5044
+      - http://elk-stack-logging.10.36.27.204.nip.io:5044
     timeout: 15
-    ssl:
-      certificate_authorities:
-      - /etc/pki/tls/certs/logstash-beats.crt
+    #ssl:
+      #certificate_authorities:
+      #- /etc/pki/tls/certs/logstash-beats.crt
 
 filebeat:
   inputs:
